@@ -13,7 +13,7 @@ connection, cursor = connect_db(database)
 connection.close()
 
 @app.route('/history', methods=['GET'])
-def history():
+def history(): 
     return "<h1>Distant Reading Archive</h1><p>This site is a prototype API for distant reading of science fiction novels.</p>"
 
 app.run()
