@@ -17,7 +17,7 @@ def connect_db(database):
 def logging(user_id, user_name):
     
     connection, cursor = connect_db(database)
-    
+
     find_user = ('SELECT * FROM user WHERE  id = ? AND name = ?')
     cursor.execute(find_user, [(user_id), (user_name)])
 
@@ -86,4 +86,5 @@ def run_server():
         #test if user exit and if his has the acces
         logging(user_id,user_name)
 
+#--------------main-------------
 run_server()
