@@ -6,6 +6,12 @@ from time import strftime
 
 #database = "F:\\Personnals\\Projects\\Python\\Python_Arduino\\user_info.db"
 database = ".\\database\\user_info.db"
+"""red_led = 7
+gre_led = 6
+
+port = 'COM3'
+boad = pyfirmata.Arduino(port)"""
+
 
 def connect_db(database):
     try:
@@ -40,6 +46,7 @@ def logging(user_id, user_name):
                 
                 connection.commit()
                 print("Data upload")
+
             except :
                 print("Could not add time information to the database !!")
 
@@ -50,14 +57,18 @@ def logging(user_id, user_name):
 
     connection.close()
 
-def user_cart_info():
+def connect_arduino_card():
     try:
         com = serial.Serial("COM3", 9600)
+        return com
     
     except PermissionError as p:
         print("Permission denied to the baude")
         return
 
+def user_cart_info():
+    com = connect_arduino_card()
+    
     chars = []
 
     while True:
@@ -86,5 +97,5 @@ def run_server():
         #test if user exit and if his has the acces
         logging(user_id,user_name)
 
-#--------------main-------------
+#----main-----
 run_server()
